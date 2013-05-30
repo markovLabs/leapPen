@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Paint</title>
+    <script src="../../sdk/leap.js"></script>
+	<script src="lib/jquery-1.9.1.min.js"></script>
+	<script src="lib/jquery-ui.js"></script>
+	<script src="lib/sketch.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/jquery-ui.css">
+	<script>
+      var controller = new Leap.Controller({enableGestures: true});
+      controller.loop(function(frame) {
+      });
+    </script>
+  </head>
+  <body>
+	<canvas id="simple_sketch" width="800" height="300"></canvas>
+	<script type="text/javascript">
+		$(function() {
+			$('#simple_sketch').sketch();
+		});
+	</script>
+  </body>
+</html>
