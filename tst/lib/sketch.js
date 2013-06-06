@@ -111,7 +111,7 @@ var __slice = Array.prototype.slice;
       return false;
     };
    
-   Sketch.prototype.redraw = function() {
+    Sketch.prototype.redraw = function() {
       var sketch;
       this.el.width = this.canvas.width();
       this.context = this.el.getContext('2d');

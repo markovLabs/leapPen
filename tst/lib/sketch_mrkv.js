@@ -1,10 +1,8 @@
-
- $.fn.Sketch_mrkv = (function($) {
+(function($) {
+  $.fn.Sketch_mrkv =function() {
     
-	function Sketch(board, opts) {
-      this.board = board;
-      this.canvas = $(board);
-      this.context = board.getContext('2d');
+	function Sketch(board) {
+      context = board.getContext('2d');
       this.painting = false;
       this.tool = {
 	    color:'#000000',
@@ -23,7 +21,7 @@
         format = "jpeg";
       }
       mime = "image/" + format;
-      return window.open(this.board.toDataURL(mime));
+      return window.open(this.canvas.toDataURL(mime));
     };
 	
     Sketch.prototype.startPainting = function() {
@@ -54,5 +52,7 @@
 		this.tool=tool;
 	}
 	
-    return Sketch;
-  })();
+    this.data('Sketch_mrkv',new Sketch(this.get(0)));
+	return this;
+  }
+}(jQuery));
