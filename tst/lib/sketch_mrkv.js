@@ -1,17 +1,18 @@
+var marker;
 (function($) {
   $.fn.Sketch_mrkv =function() {
     
 	function Sketch(board) {
-      var context = board.getContext('2d');
-       var painting = false;
-       var tool = {
+      this.context = board.getContext('2d');
+       this.painting = false;
+       this.tool = {
 	    color:'#000000',
 		size:5
 	  };
-	   var x=0;
-	   var y=0;
-       var action = [];
-	   context.moveTo( x, y);
+	   this.x=0;
+	   this.y=0;
+       this.action = [];
+	   this.context.moveTo(this.x, this.y);
     }
 	
     Sketch.prototype.download = function(format) {
@@ -40,11 +41,15 @@
 		this.context.lineJoin = "round";
 		this.context.lineCap = "round";
 		this.context.beginPath();
+		this.context.moveTo(x,y);
+		this.context.lineTo(x,y);
 		this.context.strokeStyle = this.tool.color;
 		this.context.lineWidth = this.tool.size;
-		this.context.lineTo(x,y);
+		this.context.stroke();
 		this.x=x;this.y=y;
-		this.context.moveTo(this.x,this.y); //move the origin of the vector to last coord
+		//this.context.moveTo(this.x,this.y); //move the origin of the vector to last coord
+	  
+	  return this;
 	  }
 	};
 	
@@ -52,7 +57,8 @@
 		this.tool=tool;
 	}
 	
-    this.data('Sketch_mrkv',new Sketch(this.get(0)));
-	return this;
-  }
+	marker=new Sketch(this.get(0));
+    this.data('Sketch_mrkv',marker);
+	return marker;
+}
 }(jQuery));
