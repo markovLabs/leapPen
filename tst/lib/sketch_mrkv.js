@@ -2,16 +2,16 @@
   $.fn.Sketch_mrkv =function() {
     
 	function Sketch(board) {
-      context = board.getContext('2d');
-      this.painting = false;
-      this.tool = {
+      var context = board.getContext('2d');
+       var painting = false;
+       var tool = {
 	    color:'#000000',
 		size:5
 	  };
-	  this.x=0;
-	  this.y=0;
-      this.action = [];
-	  this.context.moveTo(this.x,this.y);
+	   var x=0;
+	   var y=0;
+       var action = [];
+	   context.moveTo( x, y);
     }
 	
     Sketch.prototype.download = function(format) {
