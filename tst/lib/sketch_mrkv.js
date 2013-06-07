@@ -41,14 +41,12 @@ var marker;
 		this.context.lineJoin = "round";
 		this.context.lineCap = "round";
 		this.context.beginPath();
-		this.context.moveTo(x,y);
+		this.context.moveTo(this.x,this.y);
 		this.context.lineTo(x,y);
 		this.context.strokeStyle = this.tool.color;
 		this.context.lineWidth = this.tool.size;
 		this.context.stroke();
 		this.x=x;this.y=y;
-		//this.context.moveTo(this.x,this.y); //move the origin of the vector to last coord
-	  
 	  return this;
 	  }
 	};
@@ -58,7 +56,7 @@ var marker;
 	}
 	
 	marker=new Sketch(this.get(0));
-    this.data('Sketch_mrkv',marker);
+    //this.data('Sketch_mrkv',marker);
 	return marker;
 }
 }(jQuery));
