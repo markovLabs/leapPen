@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var marker=$('#simple_sketch_mrkv').Sketch_mrkv();
+	/*var marker=$('#simple_sketch_mrkv').Sketch_mrkv();
 	marker.startPainting();
 	for(i=0;i<20;i++){
 		marker.draw(i,i);
@@ -16,4 +16,8 @@ $(document).ready(function() {
 			}			
 		}
 	});
+	*/
+	var sheetOrigin={x:-4,y:94};
+	var dims={x:500,y:500};
+	$('#simple_sketch_mrkv').sheet(sheetOrigin,dims,0);
 }); 

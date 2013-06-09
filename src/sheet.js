@@ -1,5 +1,6 @@
 (function($) {
-	$.fn.sheet=function(){
+//it must be passed with three params, in addition to the canvas selected. 
+	$.fn.sheet=function(a,b,c){
 		//size is witdh of the stroke in pixels, which is a number of points in the coord sys
 		function Sketch(canvas) {
 			this.context = canvas.getContext('2d');
@@ -108,10 +109,10 @@
 		       guiTool:{color,size}
 			 }
 		*/
-		Sheet.prototype.setTool(tool){
+		Sheet.prototype.setTool=function(tool){
 			this.tool=tool;
 		}
 		
-		return new Sheet(this.get(1),this.get(2),this.get(3));
+		return new Sheet(a,b,c);
 	}
 }(jQuery));
