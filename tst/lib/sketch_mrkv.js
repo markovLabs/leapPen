@@ -1,4 +1,3 @@
-var marker;
 (function($) {
   $.fn.Sketch_mrkv =function() {
     
