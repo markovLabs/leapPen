@@ -8,7 +8,7 @@
 				color:'#000000',
 				size:5
 			};
-			this.a=3; //transformation parameter. Its used to convert from sheet coord to canvas coord
+			this.a=1; //transformation parameter. Its used to convert from sheet coord to canvas coord
 			this.x=0;
 			this.y=0;
 			this.context.moveTo(this.x, this.y);
@@ -16,8 +16,8 @@
 		
 		//applys linear transformation to the incoming coordinates
 		Sketch.prototype.transform=function(other_coord){
-			xx=other_coord.x*this.a;
-			yy=other_coord.y*this.a;
+			var xx=other_coord.x*this.a;
+			var yy=other_coord.y*this.a;
 			return {x:xx,y:yy};
 		}
 	
@@ -33,7 +33,7 @@
 	   
 		//destination coord
 		Sketch.prototype.draw = function(xx,yy) {
-			coord=this.transform({x:xx,y:yy});
+			var coord=this.transform({x:xx,y:yy});
 			this.context.lineJoin = "round";
 			this.context.lineCap = "round";
 			this.context.beginPath();
@@ -59,7 +59,7 @@
 			 option:width and longituted in mm if 1,pixel sizes otherwise
 		*/
 		function Sheet(sheetOrigin,dimensions,option){
-			this.leapMotionResolution=5;   	//constant h, Xj-Xj-1=h; where X is any axis. its in mm.
+			this.leapMotionResolution=1;   	//constant h, Xj-Xj-1=h; where X is any axis. its in mm.
 			this.board=[];               	//2D grid where 0 means no paint, 1 otherwise. board[x][y]
 			//2D coord origin of the sheet, they are parallell to leap motion
 			this.Ox=sheetOrigin.x;
@@ -98,9 +98,9 @@
 		
 		//update the grid one position at a time, given the tipPosition of the pen, coming from the frame event
 		Sheet.prototype.update=function(tipPos){
-			var x=Math.round((tipPos.x-this.Ox)/this.leapMotionResolution);
-			var y=Math.round((tipPos.y-this.Oy)/this.leapMotionResolution);
-			board[x][y]=this.tool.val;
+			var x=Math.abs(Math.round((tipPos.x-this.Ox)/this.leapMotionResolution));
+			var y=Math.abs(Math.round((tipPos.y-this.Oy)/this.leapMotionResolution));
+			this.board[x][y]=this.tool.val;
 			gui.draw(x,y);
 			this.x=x;this.y=y;
 		}
